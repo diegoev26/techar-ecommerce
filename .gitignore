@@ -1,0 +1,12 @@
+*.zip
+**/*.env
+**/*.log
+
+**/node_modules/
+**/backend/**/helpers/
+**/build/
+**/dist/
+**/daemon/
+**/.wwebjs_auth/
+
+**/logs/
