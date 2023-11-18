@@ -6,13 +6,6 @@ import Timeline from "./modals/Timeline";
 import Info from "./modals/Info";
 import AddComment from "./modals/AddComment";
 import { useState } from "react";
-import {
-  getActualStep,
-  getComments,
-  getConfirmData,
-  getContactData,
-  getPercepts,
-} from "../../apis/ecomm";
 import Swal from "sweetalert2";
 import { countJsonKeys } from "../../functions/main";
 
@@ -46,6 +39,7 @@ export default function Sales({
   const [comments, setComments] = useState([]);
 
   const handleShowComments = async (data) => {
+    /*
     const { code, response, error } = await getComments({
       identi: data.Identi,
     });
@@ -66,6 +60,7 @@ export default function Sales({
         showCloseButton: true,
       });
     }
+    */
     setClientName(data.NombreCliente);
     setShowComments(true);
   };
@@ -99,6 +94,7 @@ export default function Sales({
   };
 
   const handleSetContactData = async (id) => {
+    /*
     const { code, response, error } = await getContactData({ identi: id });
     switch (code) {
       case 200:
@@ -127,6 +123,7 @@ export default function Sales({
         });
         return;
     }
+    */
   };
 
   const handleShowInfo = async (data) => {
@@ -138,6 +135,7 @@ export default function Sales({
   };
 
   const handleActualStep = async (id) => {
+    /*
     const { code, response, error } = await getActualStep({ identi: id });
     switch (code) {
       case 200:
@@ -169,6 +167,7 @@ export default function Sales({
         });
         return;
     }
+    */
   };
 
   const handleHideTimeline = () => {
@@ -198,6 +197,7 @@ export default function Sales({
   };
 
   const handleSetConfirmData = async (id) => {
+    /*
     const { code, response, error } = await getConfirmData({ identi: id });
     switch (code) {
       case 200:
@@ -225,9 +225,11 @@ export default function Sales({
         });
         return;
     }
+    */
   };
 
   const handleSetPercepts = async (id) => {
+    /*
     const { code, response, error } = await getPercepts({ identi: id });
     switch (code) {
       case 200:
@@ -258,6 +260,7 @@ export default function Sales({
         });
         return;
     }
+    */
   };
 
   const handleHideValidation = () => {

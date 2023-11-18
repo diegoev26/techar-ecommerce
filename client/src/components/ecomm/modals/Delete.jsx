@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Modal, Button, Col, Form, FloatingLabel } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Loader from "./helpers/LoaderModal";
-import { deleteSwitchOrder } from "../../../apis/ecomm";
 
 export default function Delete({
   clientName,
@@ -23,6 +22,7 @@ export default function Delete({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    /*
     Swal.fire({
       title: `Estas seguro de <b>${
         option === "reset" ? "RESETEAR" : "ELIMINAR"
@@ -67,6 +67,7 @@ export default function Delete({
         setLoading(false);
       }
     });
+    */
     handleClose();
   };
 

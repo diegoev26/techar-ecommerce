@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Main from "../components/ecomm/Main";
 import Sales from "../components/ecomm/Sales";
 import Loader from "./Loader";
-import { dataToChart, getData, getStatus } from "../apis/ecomm";
 import Swal from "sweetalert2";
 import Navigation from "../components/ecomm/Navigation";
 
@@ -23,6 +22,7 @@ export default function Ecommerce() {
 
   useEffect(() => {
     setLoading(true);
+    /*
     handleInitialStatus().finally(() => {
       setDataToChart().finally(() => {
         setData().finally(() => {
@@ -30,29 +30,10 @@ export default function Ecommerce() {
         });
       });
     });
+    */
   }, [change]);
 
-  if (window.location.pathname.slice(0, 10) === "/ecommerce") {
-    let actualState = "";
-    async function statusChange() {
-      if (initialStatus !== "" && !alert && actualState !== initialStatus) {
-        const { code, response } = await getStatus();
-        if (
-          code === 200 &&
-          response !== undefined &&
-          response.Monitoreo !== undefined &&
-          typeof response.Monitoreo === "string" &&
-          response.Monitoreo.trim() !== "" &&
-          response.Monitoreo !== initialStatus
-        ) {
-          actualState = initialStatus;
-          setAlert(true);
-        }
-      }
-    }
-    setInterval(statusChange, 30000);
-  }
-
+  /*
   const handleInitialStatus = async () => {
     setInitialStatus("");
     setAlert(false);
@@ -77,7 +58,8 @@ export default function Ecommerce() {
       });
     }
   };
-
+  */
+  /*
   const setData = async () => {
     const { code, response, error } = await getData();
     switch (code) {
@@ -109,7 +91,8 @@ export default function Ecommerce() {
     }
     setTable(1);
   };
-
+  */
+  /*
   const setDataToChart = async () => {
     const { code, response, error } = await dataToChart();
     switch (code) {
@@ -139,6 +122,7 @@ export default function Ecommerce() {
         break;
     }
   };
+  */
 
   if (loading) {
     return <Loader />;

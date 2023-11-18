@@ -3,7 +3,6 @@ import { Form, Modal } from "react-bootstrap";
 import TitleModal from "../helpers/TitleModal";
 import FooterModal from "../helpers/FooterModal";
 import ErrForm from "../helpers/ErrForm";
-import { setPercepts } from "../../../../apis/ecomm";
 import Swal from "sweetalert2";
 import Loader from "../helpers/LoaderModal";
 
@@ -37,6 +36,7 @@ export default function Step04({
       return;
     }
     setLoading(true);
+    /*
     const { code, response, error } = await setPercepts({ identi: clientId });
     switch (code) {
       case 200:
@@ -62,6 +62,7 @@ export default function Step04({
         });
         break;
     }
+    */
     handleClose();
   };
 

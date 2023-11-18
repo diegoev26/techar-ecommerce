@@ -4,7 +4,6 @@ import FooterModal from "./helpers/FooterModal";
 import ErrForm from "./helpers/ErrForm";
 import TitleModal from "./helpers/TitleModal";
 import Swal from "sweetalert2";
-import { addContactData, deleteContactData } from "../../../apis/ecomm";
 import Loader from "./helpers/LoaderModal";
 
 export default function Info({
@@ -27,6 +26,7 @@ export default function Info({
     setTextErr("");
     setErrorForm(false);
     e.preventDefault();
+    /*
     if (contactData.mail !== "") {
       Swal.fire({
         title: `Estas seguro de <b>ELIMINAR</b> el <b>MAIL</b> del cliente <b>${clientName}</b>?`,
@@ -65,19 +65,21 @@ export default function Info({
             .finally(() => {
               setLoading(false);
             });
-        }
-      });
-    } else {
-      setTextErr("No hay mail para eliminar");
-      setErrorForm(true);
-      return;
-    }
+          }
+        });
+      } else {
+        setTextErr("No hay mail para eliminar");
+        setErrorForm(true);
+        return;
+      }
+      */
   };
 
   const handleDeletePhone = async (e) => {
     setTextErr("");
     setErrorForm(false);
     e.preventDefault();
+    /*
     if (contactData.phone !== "") {
       Swal.fire({
         title: `Estas seguro de <b>ELIMINAR</b> el <b>TELÉFONO</b> del cliente <b>${clientName}</b>?`,
@@ -123,6 +125,7 @@ export default function Info({
       setErrorForm(true);
       return;
     }
+    */
   };
 
   const sendInfo = async () => {
@@ -133,6 +136,7 @@ export default function Info({
       info.tel = "";
     }
     setLoading(true);
+    /*
     const { code, response, error } = await addContactData({
       identi: clientId,
       mail: info.mail,
@@ -176,6 +180,7 @@ export default function Info({
         });
         break;
     }
+    */
     setLoading(false);
   };
 

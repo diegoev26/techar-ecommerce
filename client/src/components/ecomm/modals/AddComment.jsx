@@ -4,7 +4,6 @@ import FooterModal from "./helpers/FooterModal";
 import ErrForm from "./helpers/ErrForm";
 import TitleModal from "./helpers/TitleModal";
 import Loader from "./helpers/LoaderModal";
-import { addComment } from "../../../apis/ecomm";
 import Swal from "sweetalert2";
 
 export default function AddComment({
@@ -42,6 +41,7 @@ export default function AddComment({
     }
     if (!errorForm) {
       setLoading(true);
+      /*
       const { code, response, error } = await addComment({
         identi: clientId,
         comment,
@@ -69,6 +69,7 @@ export default function AddComment({
           });
           break;
       }
+      */
       setLoading(false);
     }
   };

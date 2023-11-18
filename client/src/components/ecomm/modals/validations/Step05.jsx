@@ -4,7 +4,6 @@ import TitleModal from "../helpers/TitleModal";
 import FooterModal from "../helpers/FooterModal";
 import ErrForm from "../helpers/ErrForm";
 import Loader from "../helpers/LoaderModal";
-import { payPercepts } from "../../../../apis/ecomm";
 import Swal from "sweetalert2";
 
 export default function Step05({
@@ -33,6 +32,7 @@ export default function Step05({
       return;
     }
     setLoading(true);
+    /*
     const { code, response, error } = await payPercepts({
       identi: clientId,
       paymentCode: data.numPago,
@@ -62,6 +62,7 @@ export default function Step05({
         });
         break;
     }
+    */
     handleClose();
   };
 

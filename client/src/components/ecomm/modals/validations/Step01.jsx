@@ -3,7 +3,6 @@ import FooterModal from "../helpers/FooterModal";
 import { useState } from "react";
 import { Modal, Form } from "react-bootstrap";
 import ErrForm from "../helpers/ErrForm";
-import { taxConfirm } from "../../../../apis/ecomm";
 import Swal from "sweetalert2";
 import Loader from "../helpers/LoaderModal";
 
@@ -26,6 +25,7 @@ export default function Step01({
       setErrorForm(true);
     } else {
       setLoading(true);
+      /*
       const { code, response, error } = await taxConfirm({
         identi: clientId,
         taxCondition: IVA,
@@ -54,6 +54,7 @@ export default function Step01({
           });
           break;
       }
+      */
       handleClose();
     }
   };

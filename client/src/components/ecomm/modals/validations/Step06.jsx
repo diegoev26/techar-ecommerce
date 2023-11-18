@@ -5,7 +5,6 @@ import FooterModal from "../helpers/FooterModal";
 import ErrForm from "../helpers/ErrForm";
 import Loader from "../helpers/LoaderModal";
 import { countJsonKeys } from "../../../../functions/main";
-import { saleConfirm } from "../../../../apis/ecomm";
 import Swal from "sweetalert2";
 
 export default function Step06({
@@ -38,6 +37,7 @@ export default function Step06({
       return;
     }
     setLoading(true);
+    /*
     const { code, response, error } = await saleConfirm({ identi: clientId });
     switch (code) {
       case 200:
@@ -63,6 +63,7 @@ export default function Step06({
         });
         break;
     }
+    */
     handleClose();
     setLoading(false);
   };
