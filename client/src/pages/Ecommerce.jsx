@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Main from "../components/ecomm/Main";
 import Sales from "../components/ecomm/Sales";
 import Loader from "./Loader";
@@ -8,6 +8,56 @@ export default function Ecommerce() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [sales, setSales] = useState({
+    Interface: [],
+    Validation: [],
+    Logistic: [],
+    Finished: [],
+  });
+  const [salesToChart, setSalesToChart] = useState({ sales$: [], salesQ: [] });
+  const [change, setChange] = useState(false);
+  const [table, setTable] = useState(0);
+
+  useEffect(() => {
+    setLoading(true);
+    setDataToChart().finally(() => {
+      setData().finally(() => {
+        setLoading(false);
+      });
+    });
+  }, [change]);
+
+  const chart = {
+    sales$: [
+      {
+        Periodo: 202309,
+        ImporteVentasSinImpuestos: 58137.32,
+      },
+      {
+        Periodo: 202310,
+        ImporteVentasSinImpuestos: 218903.78,
+      },
+      {
+        Periodo: 202311,
+        ImporteVentasSinImpuestos: 150988.66,
+      },
+    ],
+    salesQ: [
+      {
+        Periodo: 202309,
+        CantidadVentas: 1,
+      },
+      {
+        Periodo: 202310,
+        CantidadVentas: 3,
+      },
+      {
+        Periodo: 202311,
+        CantidadVentas: 4,
+      },
+    ],
+  };
+
+  const data = {
     Interface: [
       {
         Estado: "Pend.Ingreso",
@@ -120,41 +170,71 @@ export default function Ecommerce() {
         PasoActual: "Finalizado",
       },
     ],
-  });
+  };
 
-  const [salesToChart, setSalesToChart] = useState({
-    sales$: [
-      {
-        Periodo: 202309,
-        ImporteVentasSinImpuestos: 58137.32,
-      },
-      {
-        Periodo: 202310,
-        ImporteVentasSinImpuestos: 218903.78,
-      },
-      {
-        Periodo: 202311,
-        ImporteVentasSinImpuestos: 150988.66,
-      },
-    ],
-    salesQ: [
-      {
-        Periodo: 202309,
-        CantidadVentas: 1,
-      },
-      {
-        Periodo: 202310,
-        CantidadVentas: 3,
-      },
-      {
-        Periodo: 202311,
-        CantidadVentas: 4,
-      },
-    ],
-  });
-  const [change, setChange] = useState(false);
-  const [table, setTable] = useState(0);
-  const [alert, setAlert] = useState(false);
+  const setDataToChart = async () => {
+    setSalesToChart(chart);
+  };
+  const setData = async () => {
+    setSales(data);
+  };
+
+  const handleDataChange = async ({ clientId, actualStep, IVA }) => {
+    if (
+      clientId === undefined ||
+      actualStep === undefined ||
+      typeof clientId !== "string" ||
+      typeof actualStep !== "string"
+    ) {
+      return;
+    }
+    setLoading(true);
+    for (let i = 0; i < data.Validation.length; i++) {
+      const sale = data.Validation[i];
+      for (const key in sale) {
+        if (key === "Identi" && Object.hasOwnProperty.call(sale, key)) {
+          const identi = sale[key];
+          if (identi !== undefined && clientId === identi) {
+            let newStep;
+            if (IVA === "AR9993") {
+              newStep = "Picking";
+              sales.Validation[i].Estado = "Importado";
+            } else {
+              switch (actualStep) {
+                case "Validar IVA":
+                  newStep = "Solicitar Percepciones";
+                  break;
+                case "Solicitar Percepciones":
+                  newStep = "Cobrar Percepciones";
+                  break;
+                case "Cobrar Percepciones":
+                  newStep = "Confirmar Pedido";
+                  break;
+                default:
+                  newStep = "Picking";
+                  sales.Validation[i].Estado = "Importado";
+                  break;
+              }
+            }
+            if (sales.Validation[i].CodigoCliente !== IVA) {
+              switch (IVA) {
+                case "AR9993":
+                  sales.Validation[i].TipoCliente = "Consumidor Final";
+                  break;
+                default:
+                  sales.Validation[i].TipoCliente = "Responsable Inscripto";
+                  break;
+              }
+            }
+            sales.Validation[i].PasoActual = newStep;
+            console.log(sales.Validation[i]);
+          }
+        }
+      }
+    }
+    setLoading(false);
+    setChange(!change);
+  };
 
   if (loading) {
     return <Loader />;
@@ -162,13 +242,7 @@ export default function Ecommerce() {
 
   return (
     <>
-      <Navigation
-        page={page}
-        setPage={setPage}
-        alert={alert}
-        change={change}
-        setChange={setChange}
-      />
+      <Navigation page={page} setPage={setPage} />
       {page === 1 ? (
         <Main
           sales={sales}
@@ -184,6 +258,7 @@ export default function Ecommerce() {
           setChange={setChange}
           change={change}
           setLoading={setLoading}
+          handleDataChange={handleDataChange}
         />
       ) : null}
     </>

@@ -1,8 +1,6 @@
 import SalesTable from "./SalesTable";
 import Comments from "./modals/Comments";
 import Validations from "./modals/Validations";
-import Delete from "./modals/Delete";
-import Timeline from "./modals/Timeline";
 import Info from "./modals/Info";
 import AddComment from "./modals/AddComment";
 import { useState } from "react";
@@ -16,24 +14,20 @@ export default function Sales({
   setChange,
   change,
   setLoading,
+  handleDataChange,
 }) {
   const [clientName, setClientName] = useState("");
   const [clientId, setClientId] = useState("");
   const [showError, setShowError] = useState(false);
   const [actualStep, setActualStep] = useState("");
   const [showStep01, setShowStep01] = useState(false);
-  const [showStep02, setShowStep02] = useState(false);
-  const [showStep03, setShowStep03] = useState(false);
   const [showStep04, setShowStep04] = useState(false);
   const [showStep05, setShowStep05] = useState(false);
   const [showStep06, setShowStep06] = useState(false);
   const [percepts, setPercepts] = useState("");
   const [confirmData, setConfirmData] = useState({});
-  const [showDelete, setShowDelete] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [contactData, setContactData] = useState({ phone: "", mail: "" });
-  const [showTimeline, setShowTimeline] = useState(false);
-  const [steps, setSteps] = useState("");
   const [showComments, setShowComments] = useState(false);
   const [showAddComment, setShowAddComment] = useState(false);
   const [comments, setComments] = useState([]);
@@ -134,68 +128,6 @@ export default function Sales({
     setShowInfo(true);
   };
 
-  const handleActualStep = async (id) => {
-    /*
-    const { code, response, error } = await getActualStep({ identi: id });
-    switch (code) {
-      case 200:
-        if (
-          response.PASOS === undefined ||
-          typeof response.PASOS !== "string" ||
-          typeof response.PASOS.trim() === ""
-        ) {
-          Swal.fire({
-            title: "Ocurrio un error al obtener el paso actual",
-            text: "Intente nuevamente, en caso de que el error persistar comunicarse con IT",
-            icon: "warning",
-            showConfirmButton: false,
-            showDenyButton: false,
-            showCloseButton: true,
-          });
-        } else {
-          setSteps(response.PASOS);
-        }
-        break;
-      default:
-        Swal.fire({
-          title: "Error obteniendo paso actual",
-          text: error.message,
-          icon: "error",
-          showConfirmButton: false,
-          showDenyButton: false,
-          showCloseButton: true,
-        });
-        return;
-    }
-    */
-  };
-
-  const handleHideTimeline = () => {
-    setClientName("");
-    setClientId("");
-    setActualStep("");
-    setSteps("");
-    setShowTimeline(false);
-  };
-
-  const handleShowTimeline = async (data) => {
-    await handleActualStep(data.Identi);
-    setClientName(data.NombreCliente);
-    setClientId(data.Identi);
-    setActualStep("Proceso actual");
-    setShowTimeline(true);
-  };
-
-  const handleHideDelete = () => {
-    setShowDelete(false);
-  };
-
-  const handleShowDelete = (data) => {
-    setClientName(data.NombreCliente);
-    setClientId(data.Identi);
-    setShowDelete(true);
-  };
-
   const handleSetConfirmData = async (id) => {
     /*
     const { code, response, error } = await getConfirmData({ identi: id });
@@ -266,8 +198,6 @@ export default function Sales({
   const handleHideValidation = () => {
     setShowError(false);
     setShowStep01(false);
-    setShowStep02(false);
-    setShowStep03(false);
     setShowStep04(false);
     setShowStep05(false);
     setShowStep06(false);
@@ -286,12 +216,6 @@ export default function Sales({
     switch (data.PasoActual) {
       case "Validar IVA":
         setShowStep01(true);
-        break;
-      case "Validar Cliente":
-        setShowStep02(true);
-        break;
-      case "Validar Padrón":
-        setShowStep03(true);
         break;
       case "Solicitar Percepciones":
         await handleSetPercepts(data.Identi);
@@ -320,10 +244,8 @@ export default function Sales({
         setTable={setTable}
         handleShowValitadion={handleShowValitadion}
         setLoading={setLoading}
-        handleShowDelete={handleShowDelete}
         handleShowComments={handleShowComments}
         handleShowInfo={handleShowInfo}
-        handleShowTimeline={handleShowTimeline}
         handleShowAddComment={handleShowAddComment}
       />
       {/* Modales Inicio*/}
@@ -338,8 +260,6 @@ export default function Sales({
         clientName={clientName}
         actualStep={actualStep}
         showStep01={showStep01}
-        showStep02={showStep02}
-        showStep03={showStep03}
         showStep04={showStep04}
         showStep05={showStep05}
         showStep06={showStep06}
@@ -349,21 +269,7 @@ export default function Sales({
         change={change}
         percepts={percepts}
         confirmData={confirmData}
-      />
-      <Delete
-        clientId={clientId}
-        clientName={clientName}
-        showDelete={showDelete}
-        handleHideDelete={handleHideDelete}
-        setChange={setChange}
-        change={change}
-      />
-      <Timeline
-        showTimeline={showTimeline}
-        steps={steps}
-        handleHideTimeline={handleHideTimeline}
-        clientName={clientName}
-        actualStep={actualStep}
+        handleDataChange={handleDataChange}
       />
       <Info
         showInfo={showInfo}

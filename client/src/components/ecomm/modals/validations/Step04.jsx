@@ -13,8 +13,7 @@ export default function Step04({
   actualStep,
   clientId,
   percepts,
-  setChange,
-  change,
+  handleDataChange,
 }) {
   const [PS, setPS] = useState(false);
   const [errorForm, setErrorForm] = useState(false);
@@ -36,33 +35,7 @@ export default function Step04({
       return;
     }
     setLoading(true);
-    /*
-    const { code, response, error } = await setPercepts({ identi: clientId });
-    switch (code) {
-      case 200:
-        Swal.fire({
-          title: response.message,
-          icon: "success",
-          timer: 3000,
-          showConfirmButton: false,
-          showDenyButton: false,
-          showCloseButton: false,
-        }).then(() => {
-          setChange(!change);
-        });
-        break;
-      default:
-        Swal.fire({
-          title: error.message,
-          text: "Intente nuevamente, en caso de que el error persistar comunicarse con IT",
-          icon: "error",
-          showConfirmButton: false,
-          showDenyButton: false,
-          showCloseButton: true,
-        });
-        break;
-    }
-    */
+    handleDataChange({ clientId, actualStep });
     handleClose();
   };
 

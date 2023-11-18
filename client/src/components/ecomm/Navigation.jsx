@@ -1,28 +1,8 @@
-import { Alert, Nav } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 
-export default function Navigation({
-  page,
-  setPage,
-  alert,
-  change,
-  setChange,
-}) {
+export default function Navigation({ page, setPage }) {
   return (
     <>
-      <Alert
-        variant="info"
-        className="d-flex justify-content-center align-items-center p-2 m-0"
-        show={alert}
-      >
-        <Alert.Link
-          href="#"
-          onClick={() => {
-            setChange(!change);
-          }}
-        >
-          Se registraron cambios en las ventas. Haga click para actualizar!
-        </Alert.Link>
-      </Alert>
       <Nav
         variant="tabs"
         defaultActiveKey={page.toString()}

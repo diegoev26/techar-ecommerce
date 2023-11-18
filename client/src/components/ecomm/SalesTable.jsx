@@ -18,9 +18,7 @@ export default function SalesTable({
   table,
   setTable,
   handleShowValitadion,
-  handleShowDelete,
   handleShowInfo,
-  handleShowTimeline,
   handleShowComments,
   handleShowAddComment,
 }) {
