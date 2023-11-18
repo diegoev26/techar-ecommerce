@@ -96,7 +96,6 @@ export default function SalesTable({
       headerName: "Tipo Cliente",
       flex: 0.75,
       align: "center",
-      valueGetter: ({ value }) => value.slice(9),
       headerAlign: "center",
     },
     {
@@ -177,13 +176,6 @@ export default function SalesTable({
           }
         />,
         <GridActionsCellItem
-          icon={<Timeline />}
-          label="Timeline"
-          onClick={() => {
-            handleShowTimeline(data.row);
-          }}
-        />,
-        <GridActionsCellItem
           icon={<ContactPage />}
           label="Contacto"
           onClick={() => {
@@ -203,14 +195,6 @@ export default function SalesTable({
           onClick={() => {
             handleShowComments(data.row);
           }}
-        />,
-        <GridActionsCellItem
-          icon={<Close />}
-          label="Delete"
-          onClick={() => {
-            handleShowDelete(data.row);
-          }}
-          className={data.row.Estado === "Importado" ? "d-none" : ""}
         />,
       ],
     },
