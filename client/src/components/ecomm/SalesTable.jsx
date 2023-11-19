@@ -6,10 +6,8 @@ import { GridActionsCellItem } from "@mui/x-data-grid-pro";
 import {
   CheckBox,
   Comment,
-  Close,
   ContactPage,
   AddComment,
-  Timeline,
 } from "@mui/icons-material";
 import moment from "moment";
 

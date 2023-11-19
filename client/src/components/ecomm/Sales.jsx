@@ -33,28 +33,6 @@ export default function Sales({
   const [comments, setComments] = useState([]);
 
   const handleShowComments = async (data) => {
-    /*
-    const { code, response, error } = await getComments({
-      identi: data.Identi,
-    });
-    setComments(
-      response !== undefined &&
-        response.data !== undefined &&
-        response.data.length !== undefined
-        ? response.data
-        : []
-    );
-    if (code !== 200) {
-      Swal.fire({
-        title: error.message,
-        icon: "error",
-        showCancelButton: false,
-        showConfirmButton: false,
-        showDenyButton: false,
-        showCloseButton: true,
-      });
-    }
-    */
     setClientName(data.NombreCliente);
     setShowComments(true);
   };
@@ -88,36 +66,7 @@ export default function Sales({
   };
 
   const handleSetContactData = async (id) => {
-    /*
-    const { code, response, error } = await getContactData({ identi: id });
-    switch (code) {
-      case 200:
-        if (response.mail === undefined || response.telefono === undefined) {
-          Swal.fire({
-            title:
-              "Ocurrio un error al obtener los datos de contacto del cliente",
-            text: "Intente nuevamente, en caso de que el error persistar comunicarse con IT",
-            icon: "warning",
-            showConfirmButton: false,
-            showDenyButton: false,
-            showCloseButton: true,
-          });
-        } else {
-          setContactData({ phone: response.telefono, mail: response.mail });
-        }
-        break;
-      default:
-        Swal.fire({
-          title: "Error obteniendo contacto de cliente",
-          text: error.message,
-          icon: "error",
-          showConfirmButton: false,
-          showDenyButton: false,
-          showCloseButton: true,
-        });
-        return;
-    }
-    */
+    console.log(id);
   };
 
   const handleShowInfo = async (data) => {
@@ -129,70 +78,11 @@ export default function Sales({
   };
 
   const handleSetConfirmData = async (id) => {
-    /*
-    const { code, response, error } = await getConfirmData({ identi: id });
-    switch (code) {
-      case 200:
-        if (response.data === undefined || countJsonKeys(response.data) === 0) {
-          Swal.fire({
-            title: "Ocurrio un error al obtener la información del cliente",
-            text: "Intente nuevamente, en caso de que el error persistar comunicarse con IT",
-            icon: "warning",
-            showConfirmButton: false,
-            showDenyButton: false,
-            showCloseButton: true,
-          });
-        } else {
-          setConfirmData(response.data);
-        }
-        break;
-      default:
-        Swal.fire({
-          title: "Error obteniendo información del cliente",
-          text: error.message,
-          icon: "error",
-          showConfirmButton: false,
-          showDenyButton: false,
-          showCloseButton: true,
-        });
-        return;
-    }
-    */
+    console.log(id);
   };
 
   const handleSetPercepts = async (id) => {
-    /*
-    const { code, response, error } = await getPercepts({ identi: id });
-    switch (code) {
-      case 200:
-        if (
-          response.Percepciones === undefined ||
-          isNaN(response.Percepciones)
-        ) {
-          Swal.fire({
-            title: "Ocurrio un error al obtener las percepciónes",
-            text: "Intente nuevamente, en caso de que el error persistar comunicarse con IT",
-            icon: "warning",
-            showConfirmButton: false,
-            showDenyButton: false,
-            showCloseButton: true,
-          });
-        } else {
-          setPercepts(response.Percepciones);
-        }
-        break;
-      default:
-        Swal.fire({
-          title: "Error calculando percepciones",
-          text: error.message,
-          icon: "error",
-          showConfirmButton: false,
-          showDenyButton: false,
-          showCloseButton: true,
-        });
-        return;
-    }
-    */
+    console.log(id);
   };
 
   const handleHideValidation = () => {

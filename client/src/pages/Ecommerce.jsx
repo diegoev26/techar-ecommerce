@@ -38,7 +38,7 @@ export default function Ecommerce() {
       },
       {
         Periodo: 202311,
-        ImporteVentasSinImpuestos: 150988.66,
+        ImporteVentasSinImpuestos: 120988.66,
       },
     ],
     salesQ: [
@@ -52,7 +52,7 @@ export default function Ecommerce() {
       },
       {
         Periodo: 202311,
-        CantidadVentas: 4,
+        CantidadVentas: 3,
       },
     ],
   };
@@ -101,21 +101,7 @@ export default function Ecommerce() {
         PasoActual: "Validar IVA",
       },
     ],
-    Logistic: [
-      {
-        Estado: "Importado",
-        Identi: "20000067429504",
-        CodigoCliente: "AR9993",
-        TipoCliente: "Consumidor Final",
-        NombreCliente: "Lainz, Julieta",
-        FechaVenta: "2023-11-08T00:00:00.000Z",
-        CantidadProductos: 1,
-        Importe: 36781.1,
-        ComprobanteERP: "MELI-005",
-        ImporteTrasporte: 0,
-        PasoActual: "Picking",
-      },
-    ],
+    Logistic: [],
     Finished: [
       {
         Estado: "Importado",
