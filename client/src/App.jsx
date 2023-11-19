@@ -23,7 +23,6 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Ecommerce />} />
-        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
