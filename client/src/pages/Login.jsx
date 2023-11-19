@@ -42,7 +42,7 @@ export default function Login() {
       path: "/",
       maxAge: 30 * 60,
     });
-    window.location.href = "/";
+    window.location.reload();
   }
   return (
     <FormInit

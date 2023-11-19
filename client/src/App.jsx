@@ -11,7 +11,13 @@ export default function App() {
     (cookies.get("username") === undefined ||
       cookies.get("username") !== "admin")
   ) {
-    window.location.pathname = "/login";
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    );
   }
   return (
     <BrowserRouter>
